@@ -1,0 +1,28 @@
+.container_domanda{
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 45dvw;
+    height: fit-content;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .3);
+    word-break: break-all;
+}
+
+.container_domanda h2{
+    display: inherit;
+    width: 100%;
+    text-align: start;
+}
+
+.elenco_risposte{
+    display: flex;
+    flex-flow: column;
+    gap: 1em;
+    font-size: large;
+    width: 100%;
+}
+
