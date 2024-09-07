@@ -17,7 +17,7 @@ function App() {
   useEffect(() => { 
     testiDomande.map((testo,index)=>{
       setDomande((v) => [
-        ...v, // spread operator -> permette di generare un nuovo array ma mantenendo tutto quello che c'era 
+        ...v, // spread operator -> permette di generare un nuovo array ma mantenendo tutto quello che c'era nel precedente (applicabile anche agli oggetti)
         { id: index, testo: testo, risposta: "" },
       ]);
     })
