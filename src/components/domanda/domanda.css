@@ -1,4 +1,5 @@
-.container_domanda{
+.container_domanda {
+    background-color: white;
     display: flex;
     flex-flow: column;
     padding: 20px;
@@ -9,16 +10,21 @@
     border-radius: 10px;
     border: 1px solid lightgray;
     box-shadow: 0 4px 5px rgba(0, 0, 0, .3);
-    word-break: break-all;
+    word-break: keep-all;
+
+    & p {
+        width: 100%;
+    }
 }
 
-.container_domanda h2{
+.container_domanda h3 {
     display: inherit;
     width: 100%;
     text-align: start;
+    font-size: 1.35rem;
 }
 
-.elenco_risposte{
+.elenco_risposte {
     display: flex;
     flex-flow: column;
     gap: 1em;
@@ -26,3 +32,12 @@
     width: 100%;
 }
 
+.notValid {
+    border: 3px solid red;
+}
+
+.mandatory {
+    color:red;
+    font-size: larger;
+    font-weight: 800;
+}

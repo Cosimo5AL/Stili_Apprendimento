@@ -1,40 +1,63 @@
-import { useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import Domanda from "./components/domanda/Domanda";
+import Homepage from "./pages/Homepage";
+import { createContext, useState } from "react";
+import staticContent from "./data/static_content"
+import ResultsPage from "./pages/rispose_page/Results";
 
-function App() {
-  //---------- States ----------
-  const testiDomande = []; // array statico delle domande
+//settings di navigazione del router
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Homepage />
+  },
+  {
+    path: "/results",
+    element: <ResultsPage/>,
+  }
+])
+
+// creiamo il nostro custom hook( per convenzione inizia con use ) che servirà a creare l'oggetto con dentro tutto il necessario
+export const useData = () => {
+  const { testiDomande } = staticContent(); // array statico delle domande
   const [domande, setDomande] = useState([]); // array che gestisce lo stato della pagina
 
+  const initDomande = () => {
+    testiDomande.map((testo, index) => {
+      setDomande(v => [...v, { id: index, testo: testo, risposta: null}])
+    })
+  }
 
+  //output : [id,id,id,id] (id = id della domanda senza risposta)
+  const checkResponses = () => domande.reduce((nonValid,domanda) => (domanda.risposta === null) ? [...nonValid,domanda] : [...nonValid],[])
+
+  const cantProceed = () => checkResponses().length > 0
+
+  return { domande, setDomande, initDomande, checkResponses, cantProceed }
+}
+//creiamo il context da utilizzare nelle altre pagine
+export const Context = createContext()
+
+//creiamo il provider del context che di fatto ci renderà disponibile il context in tutte le pagine
+export const DataProvider = ({ children }) => {
+  //instanziamo data
+  const data = useData()
+  //la passiamo come value al provider
+  return <Context.Provider value={data}>{children}</Context.Provider>
+}
+
+export default function App() {
   /* 
     metodo di react che, in caso nelle quadre ci siano degli stati, 
     rilancia il codice al suo interno ogni volta che questi cambiano valore. 
     Se è vuoto, come in questo caso, avviene solo al caricamento della pagina
+    useEffect(()=>{},[])
   */
-
-  useEffect(() => { 
-    testiDomande.map((testo,index)=>{
-      setDomande((v) => [
-        ...v, // spread operator -> permette di generare un nuovo array ma mantenendo tutto quello che c'era nel precedente (applicabile anche agli oggetti)
-        { id: index, testo: testo, risposta: "" },
-      ]);
-    })
-  }, []); 
-
-  //---------- Page ----------
   return (
-    <div className="projectRoot">
-      <h1>Questa è la root</h1>
-      <div className="domande_container">
-        {domande.map((domanda) => {
-          return <Domanda domanda={domanda} />;
-        })}
-      </div>
-      <button onClick={() => console.log(domande)}>Debug</button>
-    </div>
+    <>
+      <DataProvider>
+        <RouterProvider router={router} />
+      </DataProvider>
+    </>
   );
 }
-
-export default App;

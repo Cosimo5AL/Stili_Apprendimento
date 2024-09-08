@@ -1,14 +1,62 @@
-.projectRoot{
+* {
+  transition: ease-in-out 300ms;
+}
+
+@keyframes click {
+  0% {
+    transform: translateY(0px);
+    box-shadow: 0 5px 5px lightgray;
+  }
+
+  100% {
+    transform: translateY(3px);
+    box-shadow: 0 2px 5px lightgray;
+  }
+}
+
+.projectRoot {
   display: flex;
   flex-flow: column;
   /* justify-content: center; se riga --> asse delle x, invece se colonna --> asse delle y */
-  align-items: center; /*se riga --> asse delle y, invece se colonna --> asse delle x*/
-  height: 100dvh; /* dinamici ma assoluti ( non si adattano rispetto alle dimensioni del padre ) */
+  align-items: center;
+  /*se riga --> asse delle y, invece se colonna --> asse delle x*/
+  height: 100dvh;
+  /* dinamici ma assoluti ( non si adattano rispetto alle dimensioni del padre ) */
   width: 100dvw;
+  background-color: rgb(240, 235, 248);
+  overflow-y: scroll;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-.domande_container{
+.domande_container {
   display: flex;
   flex-flow: column;
   gap: 1em;
+}
+
+.btnSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  width: 45dvw;
+  padding: 1rem 0;
+  font-size: large;
+  margin-bottom: 10rem;
+  font-weight: 700;
+  background-color: white;
+  box-shadow: 0 5px 5px lightgray;
+
+  &:active:not(:disabled){
+    animation: click 100ms ease normal;
+  }
+
+  &:hover:not(:disabled){
+    background-color: violet;
+    color: white;
+  }
+
 }

@@ -1,0 +1,11 @@
+.container_risultati{
+    display: grid;
+    grid-template-areas: 
+    "Area_A Area_A"
+    "Area_B Area_C";
+    width: 100dvw;
+    height: 80dvh;
+    box-sizing: border-box;
+    padding: 2rem;
+    column-gap: 20px;
+}

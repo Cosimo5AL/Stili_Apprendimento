@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+}
+
+.area{
+    text-align: center;
+    padding: 1rem;
+    font-size: x-large;
+    font-weight: 600;
+    flex: 1;
+}
+.sottoIntestazione{
+    display: flex;
+
+    & td{
+        border: 1px solid black;
+        width: 12.5%;
+        padding: 1rem;
+        padding-inline: 0;
+        display: flex;
+        flex-flow: column;
+        flex: 1;
+        text-align: center;
+
+        & div{
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: 1px solid black;
+            width: 100%;
+        }
+        & div:last-child{
+            border: 0;
+            padding-bottom: 0;
+        }
+
+        & div:first-child{
+            padding-top: 0;
+            border-top: 0;
+        }
+    }
+}
+
+.roundedStartEnd{
+    & td:first-child{
+        border-radius: 10px 0 0 0;
+    }
+    & td:last-child{
+        border-radius: 0 10px 0 0;
+    }
+}
+
+.punteggio{
+    height: 16em;
+    justify-content: center;
+    align-items: center;
+}
