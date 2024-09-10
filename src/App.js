@@ -4,6 +4,9 @@ import Homepage from "./pages/Homepage";
 import { createContext, useState } from "react";
 import staticContent from "./data/static_content"
 import ResultsPage from "./pages/rispose_page/Results";
+import DBManager from "./service/dbManager";
+import LoginPage from "./pages/loginPage/loginPage";
+import PaginaDocente from "./pages/paginaDocente/paginaDocente";
 
 //settings di navigazione del router
 export const router = createBrowserRouter([
@@ -14,6 +17,14 @@ export const router = createBrowserRouter([
   {
     path: "/results",
     element: <ResultsPage/>,
+  },
+  {
+    path: "/login",
+    element: <LoginPage/>,
+  },
+  {
+    path: "/paginaDocente",
+    element: <PaginaDocente/>
   }
 ])
 
@@ -33,7 +44,9 @@ export const useData = () => {
 
   const cantProceed = () => checkResponses().length > 0
 
-  return { domande, setDomande, initDomande, checkResponses, cantProceed }
+  const dbManager = DBManager();
+
+  return { domande, setDomande, initDomande, checkResponses, cantProceed ,dbManager}
 }
 //creiamo il context da utilizzare nelle altre pagine
 export const Context = createContext()

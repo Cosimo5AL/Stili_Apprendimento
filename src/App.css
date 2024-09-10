@@ -60,3 +60,28 @@
   }
 
 }
+
+.personalDataInput{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50em;
+  height: 20em;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+
+  & .dataInputField{
+    display: flex;
+    gap: .5rem;
+    font-size: larger;
+
+    & input{
+      display: flex;
+      border: 0;
+      border-bottom: 1px dashed gray;
+      font-size: medium;
+    }
+  }
+}
